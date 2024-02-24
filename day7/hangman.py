@@ -1,27 +1,45 @@
-#Step 2
-
+import hangman_art
+import hangman_words
 import random
-word_list = ["aardvark", "baboon", "camel"]
-chosen_word = random.choice(word_list)
+print(hangman_art.logo)
+chosen_word = random.choice(hangman_words.word_list)
+end_of_game=False
+lives=6
 
 #Testing code
 print(f'Pssst, the solution is {chosen_word}.')
 
-#TODO-1: - Create an empty List called display.
-#For each letter in the chosen_word, add a "_" to 'display'.
-#So if the chosen_word was "apple", display should be ["_", "_", "_", "_", "_"] with 5 "_" representing each letter to guess.
 display=[]
 for i in range(len(chosen_word)):
     display.append("_")
 print(display)
-def guessfunc():
+while not end_of_game:
     guess = input("Guess a letter: ").lower()
-    for i in range(len(chosen_word)):
-        if chosen_word[i]==guess:
-            display[i]=guess
-            
-    print(display)  
+    if guess in display:
+        print(f"you have already guessed {guess}")
+    elif guess in chosen_word:
+        for i in range(len(chosen_word)):
+            if chosen_word[i]==guess:
+                display[i]=guess
+    else:
+        lives=lives-1
+        print(f"your guess is "{guess}" which is wrong")
+        print(hangman_art.stages[lives])
+        if lives==0:
+            end_of_game=True
+            print("you lose")
+        #TODO-2: - If guess is not a letter in the chosen_word,
+    #Then reduce 'lives' by 1. 
+    #If lives goes down to 0 then the game should stop and it should print "You lose."
 
-while "_" in display:
-    guessfunc()
-#TODO-1: - Use a while loop to let the user guess again. The loop should only stop once the user has guessed all the letters in the chosen_word and 'display' has no more blanks ("_"). Then you can tell the user they've won.
+    #Join all the elements in the list and turn it into a String.
+    print(f"{' '.join(display)}")
+            
+      
+
+    if "_" not in display:
+        end_of_game=True
+        print("you won")
+    
+    
+    #TODO-3: - print the ASCII art from 'stages' that corresponds to the current number of 'lives' the user has remaining.
