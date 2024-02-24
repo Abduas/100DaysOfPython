@@ -23,7 +23,7 @@ while not end_of_game:
                 display[i]=guess
     else:
         lives=lives-1
-        print(f"your guess is "{guess}" which is wrong")
+        print(f"your guess is {guess} which is wrong")
         print(hangman_art.stages[lives])
         if lives==0:
             end_of_game=True
