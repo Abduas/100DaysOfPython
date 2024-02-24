@@ -27,7 +27,7 @@ while not end_of_game:
         print(hangman_art.stages[lives])
         if lives==0:
             end_of_game=True
-            print("you lose").
+            print("you lose")
     print(f"{' '.join(display)}")
             
       
