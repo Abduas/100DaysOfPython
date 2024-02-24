@@ -10,4 +10,4 @@ def greet_with_name(name,location):
     print(f"how is the wheather in {location}")
 
 
-greet_with_name("abdullah","kasaragod")
+greet_with_name(name="abdullah",location="kasaragod")
